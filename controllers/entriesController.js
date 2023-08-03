@@ -1,4 +1,3 @@
-// import Entry from '../models/entry.js';
 import Entry from '../models/entry.js';
 import Country from '../models/country.js';
 import User from '../models/user.js';
@@ -62,10 +61,7 @@ async function deleteEntry(req, res, next) {
     if (!entry) {
       return res.status(404).send({ message: 'No entry found' });
     }
-    if (
-      !entry.addedBy.equals(req.currentUser._id)
-      // || !req.currentUser.isAdmin - add back after updating seed file
-    ) {
+    if (!entry.addedBy.equals(req.currentUser._id)) {
       return res.status(401).send({ message: 'Unauthorized' });
     }
 
